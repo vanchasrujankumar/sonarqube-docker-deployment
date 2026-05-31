@@ -1,0 +1,27 @@
+ARG SONAR_VERSION=community
+FROM sonarqube:${SONAR_VERSION}
+
+USER root
+
+RUN set -eux && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+      curl \
+      jq \
+      unzip \
+      wget \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN set -eux && \
+    wget -q -O /tmp/sonar-project.properties https://raw.githubusercontent.com/SonarSource/sonar-scanner-cli/master/sonar-scanner-cli/src/main/resources/sonar-project.properties && \
+    mkdir -p /opt/sonarqube/extensions/plugins
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=5 \
+  CMD curl -sf http://localhost:9000/api/system/status | grep -q '"UP"' || exit 1
+
+USER sonarqube
+
+ENV SONAR_CE_JAVAOPTS="-Xmx1g -Xms512m" \
+    SONAR_SEARCH_JAVAOPTS="-Xmx1g -Xms512m" \
+    SONAR_WEB_JAVAOPTS="-Xmx1g -Xms512m" \
+    SONAR_TELEMETRY_ENABLE="false"
