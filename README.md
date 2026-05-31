@@ -6,7 +6,7 @@ Production-grade SonarQube Community Build setup with Docker Compose, multi-envi
 
 ## Architecture Flow
 
-```mermaid
+<pre class="mermaid">
 flowchart TD
     User([Developer]) -->|Push code| GH[GitHub Repository]
     
@@ -21,16 +21,14 @@ flowchart TD
     GH --> CI
     
     subgraph Dev[Development Environment]
-        DC_DEV[docker-compose.dev.yml]
-        SQ_DEV[SonarQube<br/>:9000]
-        PG_DEV[PostgreSQL 17<br/>:5432]
+        SQ_DEV[SonarQube :9000]
+        PG_DEV[PostgreSQL 17 :5432]
         SQ_DEV --> PG_DEV
     end
     
     subgraph Prod[Production Environment]
-        direction TB
-        NX[Nginx<br/>:80/:443] --> SQ_PROD[SonarQube<br/>:9000]
-        SQ_PROD --> PG_PROD[PostgreSQL 17<br/>:5432]
+        NX[Nginx :80/:443] --> SQ_PROD[SonarQube :9000]
+        SQ_PROD --> PG_PROD[PostgreSQL 17 :5432]
     end
 
     subgraph Automation[Automated Updates]
@@ -40,7 +38,7 @@ flowchart TD
 
     CI --> Dev
     CI --> Prod
-```
+</pre>
 
 ## Features
 
@@ -81,20 +79,20 @@ SonarQube Community Build supports the following out of the box:
 
 ## Setup Workflow
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
     A[Clone Repo] --> B[cp .env.example .env]
-    B --> C[Edit .env<br/>Set POSTGRES_PASSWORD]
+    B --> C[Edit .env - Set POSTGRES_PASSWORD]
     C --> D{Choose Mode}
-    D -->|Dev| E[docker compose -f .yml -f .dev.yml up -d]
-    D -->|Production| F[docker compose -f .yml -f .prod.yml up -d]
+    D -->|Dev| E[docker compose - dev mode]
+    D -->|Production| F[docker compose - prod mode]
     E --> G[Open http://localhost:9000]
     F --> H[Open http://localhost]
     G --> I[Login: admin / admin]
     H --> I
     I --> J[Change Default Password]
     J --> K[Analyze Your Code!]
-```
+</pre>
 
 ## Quick Start
 
