@@ -8,6 +8,7 @@ Production-grade SonarQube Community Build setup with Docker Compose, multi-envi
 [![GitHub Release](https://img.shields.io/github/v/release/vanchasrujankumar/sonarqube-docker-deployment?style=flat&logo=github)](https://github.com/vanchasrujankumar/sonarqube-docker-deployment/releases)
 [![Docker](https://img.shields.io/badge/sonarqube-community-2496ED?style=flat&logo=docker)](https://hub.docker.com/_/sonarqube)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?style=flat&logo=postgresql)](https://www.postgresql.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat)](https://opensource.org/licenses/MIT)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Mermaid%20Diagrams-222222?style=flat&logo=github)](https://vanchasrujankumar.github.io/sonarqube-docker-deployment/)
 
 ## Architecture Flow
