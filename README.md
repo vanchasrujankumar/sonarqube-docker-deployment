@@ -4,6 +4,44 @@ Production-grade SonarQube Community Build setup with Docker Compose, multi-envi
 
 **Version:** SonarQube Community Build 26.5.0 (latest) · PostgreSQL 17 Alpine
 
+## Architecture Flow
+
+```mermaid
+flowchart TD
+    User([Developer]) -->|Push code| GH[GitHub Repository]
+    
+    subgraph CI[GitHub Actions CI]
+        Lint[Lint Dockerfiles]
+        Build[Build Image]
+        Test[Integration Test]
+        YAMLLint[YAML Lint]
+        Lint --> Build --> Test
+    end
+    
+    GH --> CI
+    
+    subgraph Dev[Development Environment]
+        DC_DEV[docker-compose.dev.yml]
+        SQ_DEV[SonarQube<br/>:9000]
+        PG_DEV[PostgreSQL 17<br/>:5432]
+        SQ_DEV --> PG_DEV
+    end
+    
+    subgraph Prod[Production Environment]
+        direction TB
+        NX[Nginx<br/>:80/:443] --> SQ_PROD[SonarQube<br/>:9000]
+        SQ_PROD --> PG_PROD[PostgreSQL 17<br/>:5432]
+    end
+
+    subgraph Automation[Automated Updates]
+        REN[Renovate Bot] -->|Auto-merge patches| GH
+        DEP[Dependabot] -->|Weekly PRs| GH
+    end
+
+    CI --> Dev
+    CI --> Prod
+```
+
 ## Features
 
 - **Multi-environment** — dev and production configurations via compose overrides
@@ -40,6 +78,23 @@ SonarQube Community Build supports the following out of the box:
 - **Docker** 24+ and **Docker Compose v2** ([install guide](https://docs.docker.com/engine/install/))
 - **At least 4GB RAM** allocated to Docker (6GB+ recommended)
 - For production: a domain name with DNS pointing to your server
+
+## Setup Workflow
+
+```mermaid
+flowchart LR
+    A[Clone Repo] --> B[cp .env.example .env]
+    B --> C[Edit .env<br/>Set POSTGRES_PASSWORD]
+    C --> D{Choose Mode}
+    D -->|Dev| E[docker compose -f .yml -f .dev.yml up -d]
+    D -->|Production| F[docker compose -f .yml -f .prod.yml up -d]
+    E --> G[Open http://localhost:9000]
+    F --> H[Open http://localhost]
+    G --> I[Login: admin / admin]
+    H --> I
+    I --> J[Change Default Password]
+    J --> K[Analyze Your Code!]
+```
 
 ## Quick Start
 
