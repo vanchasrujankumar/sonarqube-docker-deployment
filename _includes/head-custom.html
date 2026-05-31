@@ -2,10 +2,24 @@
 <script>
 mermaid.initialize({startOnLoad: false, theme: 'neutral'});
 document.addEventListener('DOMContentLoaded', function() {
-  mermaid.run({querySelector: 'pre.mermaid'});
+  mermaid.run({querySelector: 'code.language-mermaid'});
 });
 </script>
 <style>
-  pre.mermaid { text-align: center; margin: 1.5em 0; background: none; }
-  .markdown-body pre.mermaid svg { max-width: 100%; }
+pre:has(code.language-mermaid) {
+  background: none !important;
+  padding: 0 !important;
+  border: none !important;
+  overflow: visible;
+  white-space: normal;
+  margin: 1.5em 0;
+  text-align: center;
+}
+code.language-mermaid {
+  background: none !important;
+  padding: 0 !important;
+}
+pre:has(code.language-mermaid) svg {
+  max-width: 100%;
+}
 </style>

@@ -4,9 +4,11 @@ Production-grade SonarQube Community Build setup with Docker Compose, multi-envi
 
 **Version:** SonarQube Community Build 26.5.0 (latest) · PostgreSQL 17 Alpine
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Mermaid%20Diagrams-222222?style=flat&logo=github)](https://vanchasrujankumar.github.io/sonarqube-docker-deployment/)
+
 ## Architecture Flow
 
-<pre class="mermaid">
+```mermaid
 flowchart TD
     User([Developer]) -->|Push code| GH[GitHub Repository]
     
@@ -38,7 +40,7 @@ flowchart TD
 
     CI --> Dev
     CI --> Prod
-</pre>
+```
 
 ## Features
 
@@ -79,7 +81,7 @@ SonarQube Community Build supports the following out of the box:
 
 ## Setup Workflow
 
-<pre class="mermaid">
+```mermaid
 flowchart LR
     A[Clone Repo] --> B[cp .env.example .env]
     B --> C[Edit .env - Set POSTGRES_PASSWORD]
@@ -92,7 +94,7 @@ flowchart LR
     H --> I
     I --> J[Change Default Password]
     J --> K[Analyze Your Code!]
-</pre>
+```
 
 ## Quick Start
 
