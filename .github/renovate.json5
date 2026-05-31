@@ -74,13 +74,5 @@
     automerge: true,
     schedule: ["before 9am on Monday"],
   },
-  regexManagers: [
-    {
-      description: "Update SonarQube version in Dockerfile",
-      fileMatch: ["Dockerfile.sonarqube"],
-      matchStrings: ["FROM sonarqube:(?<currentValue>.*?)-community"],
-      datasourceTemplate: "docker",
-      depNameTemplate: "sonarqube",
-    },
-  ],
+
 }
