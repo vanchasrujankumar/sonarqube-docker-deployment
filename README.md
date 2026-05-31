@@ -4,6 +4,10 @@ Production-grade SonarQube Community Build setup with Docker Compose, multi-envi
 
 **Version:** SonarQube Community Build 26.5.0 (latest) · PostgreSQL 17 Alpine
 
+[![CI](https://github.com/vanchasrujankumar/sonarqube-docker-deployment/actions/workflows/ci.yml/badge.svg)](https://github.com/vanchasrujankumar/sonarqube-docker-deployment/actions/workflows/ci.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/vanchasrujankumar/sonarqube-docker-deployment?style=flat&logo=github)](https://github.com/vanchasrujankumar/sonarqube-docker-deployment/releases)
+[![Docker](https://img.shields.io/badge/sonarqube-community-2496ED?style=flat&logo=docker)](https://hub.docker.com/_/sonarqube)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?style=flat&logo=postgresql)](https://www.postgresql.org/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Mermaid%20Diagrams-222222?style=flat&logo=github)](https://vanchasrujankumar.github.io/sonarqube-docker-deployment/)
 
 ## Architecture Flow
